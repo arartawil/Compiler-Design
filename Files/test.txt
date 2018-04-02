@@ -1,0 +1,9 @@
+int y;
+int b
+float y
+float x;
+double n;
+double s
+print("arar");
+print("tawil")
+print"n";
