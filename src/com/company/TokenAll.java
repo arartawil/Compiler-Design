@@ -67,6 +67,7 @@ public class TokenAll {
                 Token token = new Token();
                 sizeRw = found.length();
                 token.tokenval = found + "_T";
+                token.attribute.add(found);
                 tokenList.add(token);
                 x = end;
                 end = x + 1;
