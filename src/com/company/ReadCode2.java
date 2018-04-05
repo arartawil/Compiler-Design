@@ -21,7 +21,7 @@ public class ReadCode2
             tokenAll.Tokenization(lines.get(i));
         }
         TokenAll.showToken();
-        Grammar gammer=new Grammar();
+        //Grammar gammer=new Grammar();
     }
 
 

@@ -17,7 +17,7 @@ import java.util.ArrayList;
 public class Parser
 {
 	String firstResult="";
-
+	boolean vis=false;
 
 
     public String parseS(ArrayList<String> toParse)
@@ -31,7 +31,7 @@ public class Parser
 		
 	    case "print":
 	    	firstResult+="(S " + parseW(toParse) + ")";
-	    	if (toParse.size()>0 && toParse.get(0)!=".")parseS(toParse);
+	    	if (toParse.size()>0 && toParse.get(0)!=".")parseTail2(toParse);
 	    	return firstResult;
 
 	    default:
@@ -61,19 +61,21 @@ public class Parser
     {
 	match(toParse, "print");
 		String test=parseTail2(toParse);
-		System.out.println(test);
 	return "(A1 print " + test + ")";
     }
 
     public   String parseTail2(ArrayList<String> toParse)
     {
+    	String res="";
 	switch (toParse.get(0))
 	    {
+
 	    case "\"":
-		match(toParse, "\"");
-		match(toParse, "\"");
-		match(toParse,";");
-		return "(A2(A3(A4 (\" \" ; )";
+		if(match(toParse, "\"")){res+="A2(\"(";}
+		if(match(toParse, "\"")){res+="A3(\"(";}
+		 if(match(toParse,";")){res+="A4(;)";}
+		return res;
+
 
 
 
@@ -83,15 +85,17 @@ public class Parser
 	    }
     }
 
-    public   void match(ArrayList<String> s, String c)
+    public   boolean match(ArrayList<String> s, String c)
     {
 	if (s.size() > 0 && s.get(0).equals(c))
 	    {
 		s.remove(0);
+		return  true;
 	    }
 	else
 	    {
 		System.err.println("parse error " + s + " " + c);
+		return false;
 	    }
     }
 
